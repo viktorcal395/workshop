@@ -1,20 +1,21 @@
 steps:
-- name: 'docker'
-  id: create-image
+- name: 'gcr.io/cloud-builders/docker'
+  id: create-us-image
   args:
   - build
   - -t
-  - ${_IMAGE}
+  - ${_US_IMAGE}
   - .
 
-- name: 'docker'
-  id: push-image
+- name: 'gcr.io/cloud-builders/docker'
+  id: save-us-image
   args:
   - push
-  - ${_IMAGE}
+  - ${_US_IMAGE}
+
 
 substitutions:
-  _AR_REGION: us-docker.pkg.dev
-  _AR_REPO: pokemon
-  _NAME: pokemon-no
-  _IMAGE: ${_AR_REGION}/${PROJECT_ID}/${_AR_REPO}/${_NAME}
+  _AR_REGION: northamerica-northeast1-docker.pkg.dev
+  _AR_REPO: vic
+  _US_NAME: grupo1-1
+  _US_IMAGE: ${_AR_REGION}/${PROJECT_ID}/${_AR_REPO}/${_US_NAME}
