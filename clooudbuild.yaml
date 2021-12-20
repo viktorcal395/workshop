@@ -1,0 +1,20 @@
+steps:
+- name: 'docker'
+  id: create-image
+  args:
+  - build
+  - -t
+  - ${_IMAGE}
+  - .
+
+- name: 'docker'
+  id: push-image
+  args:
+  - push
+  - ${_IMAGE}
+
+substitutions:
+  _AR_REGION: us-docker.pkg.dev
+  _AR_REPO: pokemon
+  _NAME: pokemon-no
+  _IMAGE: ${_AR_REGION}/${PROJECT_ID}/${_AR_REPO}/${_NAME}
